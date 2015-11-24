@@ -13,7 +13,7 @@
 
 <!-- END BLOCK : post -->
 
-<!-- START BLOCK : standard -->
+<!-- START BLOCK : default -->
 <h1>Rock, Paper, Scissor</h1>
 {name}
 
