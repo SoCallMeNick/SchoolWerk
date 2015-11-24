@@ -12,25 +12,33 @@
 <body>
 <!-- START BLOCK : noPost -->
 <h1>Rock, Paper, Scissor</h1>
-{name}
+{score}
+{choice}
+{result}
 
 <!-- END BLOCK : noPost -->
 
 <!-- START BLOCK : rock -->
 <h1>Rock, Paper, Scissor</h1>
-{name}
+{score}
+{choice}
+{result}
 
 <!-- END BLOCK : rock -->
 
 <!-- START BLOCK : paper -->
 <h1>Rock, Paper, Scissor</h1>
-{name}
+{score}
+{choice}
+{result}
 
 <!-- END BLOCK : paper -->
 
 <!-- START BLOCK : scissor -->
 <h1>Rock, Paper, Scissor</h1>
-{name}
+{score}
+{choice}
+{result}
 
 <!-- END BLOCK : scissor -->
 
