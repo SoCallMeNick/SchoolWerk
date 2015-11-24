@@ -1,5 +1,12 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['score1']) OR !isset($_SESSION['score2'])) {
+    $_SESSION['score1'] = 0;
+    $_SESSION['score2'] = 0;
+}
+
 include_once("./lib/class.TemplatePower.inc.php");
 
 $tpl = new TemplatePower("./template.tpl");
@@ -7,8 +14,6 @@ $tpl->prepare();
 
 $choice = null;
 $rnd = null;
-$score1 = 0;
-$score2 = 0;
 
 if (!empty($_POST['rock'])) {
     $choice = "rock";
@@ -34,49 +39,52 @@ if (!empty($_POST)) {
             $tpl->assign("result", " rock vs. rock. Draw. ");
         } elseif ($choice == "paper") {
             $tpl->assign("result", " paper beats rock. Win. ");
-            $win = true;
+            $win = "true";
         } elseif ($choice == "scissor") {
             $tpl->assign("result", " rock crushes scissor. Lose. ");
-            $win = false;
+            $win = "false";
         }
     }
     if ($rnd == 2) {
         $tpl->assign("choice", "$choice > Paper  <br />");
         if ($choice == "rock") {
             $tpl->assign("result", " paper wraps around rock. lose. ");
-            $win = false;
+            $win = "false";
         } elseif ($choice == "paper") {
             $tpl->assign("result", " paper vs. paper. Draw. ");
         } elseif ($choice == "scissor") {
             $tpl->assign("result", " scissor cuts paper. Win. ");
-            $win = true;
+            $win = "true";
         }
     }
     if ($rnd == 3) {
         $tpl->assign("choice", "$choice > scissor <br />");
         if ($choice == "rock") {
             $tpl->assign("result", " rock crushes scissor. Win. ");
-            $win = true;
+            $win = "true";
         } elseif ($choice == "paper") {
             $tpl->assign("result", " scissor cuts paper. Lose. ");
-            $win = false;
+            $win = "false";
         } elseif ($choice == "scissor") {
             $tpl->assign("result", " scissor vs. scissor. Draw. ");
         }
     }
-    if ($win == true) {
-        $_SESSION['score1'] += 1;
-        $score1 = $_SESSION['score1'];
-        $score2 = $_SESSION['score2'];
+
+    if ($win == "true") {
+        $_SESSION['score1']++;
+    } elseif ($win == "false") {
+        $_SESSION['score2']++;
     }
-    elseif ($win == false) {
-        $_SESSION['score2'] += 1;
-        $score1 = $_SESSION['score1'];
-        $score2 = $_SESSION['score2'];
+    else {
+
     }
+
+
+
 }
 
-$tpl->assign("score", "ME: $score1 / YOU: $score2 <br /><br />");
+$tpl->assign("score", "ME: " . $_SESSION['score1'] . " / YOU: " . $_SESSION['score2'] . "<br /><br />");
+
 
 $tpl->newBlock("options");
 
