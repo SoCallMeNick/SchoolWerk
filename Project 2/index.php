@@ -34,38 +34,45 @@ if (!empty($_POST)) {
             $tpl->assign("result", " rock vs. rock. Draw. ");
         } elseif ($choice == "paper") {
             $tpl->assign("result", " paper beats rock. Win. ");
-            $win = 1;
+            $win = true;
         } elseif ($choice == "scissor") {
             $tpl->assign("result", " rock crushes scissor. Lose. ");
+            $win = false;
         }
     }
     if ($rnd == 2) {
         $tpl->assign("choice", "$choice > Paper  <br />");
         if ($choice == "rock") {
             $tpl->assign("result", " paper wraps around rock. lose. ");
+            $win = false;
         } elseif ($choice == "paper") {
             $tpl->assign("result", " paper vs. paper. Draw. ");
         } elseif ($choice == "scissor") {
             $tpl->assign("result", " scissor cuts paper. Win. ");
-            $win = 1;
+            $win = true;
         }
     }
     if ($rnd == 3) {
         $tpl->assign("choice", "$choice > scissor <br />");
         if ($choice == "rock") {
             $tpl->assign("result", " rock crushes scissor. Win. ");
-            $win = 1;
+            $win = true;
         } elseif ($choice == "paper") {
             $tpl->assign("result", " scissor cuts paper. Lose. ");
+            $win = false;
         } elseif ($choice == "scissor") {
             $tpl->assign("result", " scissor vs. scissor. Draw. ");
         }
     }
-    if ($win == 1) {
+    if ($win == true) {
         $_SESSION['score1'] += 1;
+        $score1 = $_SESSION['score1'];
+        $score2 = $_SESSION['score2'];
     }
-    else {
+    elseif ($win == false) {
         $_SESSION['score2'] += 1;
+        $score1 = $_SESSION['score1'];
+        $score2 = $_SESSION['score2'];
     }
 }
 
