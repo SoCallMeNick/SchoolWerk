@@ -75,12 +75,6 @@ if (!empty($_POST)) {
     } elseif ($win == "false") {
         $_SESSION['score2']++;
     }
-    else {
-
-    }
-
-
-
 }
 
 $tpl->assign("score", "ME: " . $_SESSION['score1'] . " / YOU: " . $_SESSION['score2'] . "<br /><br />");
