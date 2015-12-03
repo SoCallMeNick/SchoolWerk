@@ -2,7 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if (!isset($_SESSION['score1']) OR !isset($_SESSION['score2'])) {
+if (!isset($_SESSION['score1']) || !isset($_SESSION['score2'])) {
     $_SESSION['score1'] = 0;
     $_SESSION['score2'] = 0;
 }
